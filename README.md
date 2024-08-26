@@ -92,15 +92,16 @@ Ensure you have the following installed:
 
 | Home Screen | Habit Details | New View |
 |-------------|---------------|---------------|
-| ![Home](screens/home.png) | ![Details](screens/habit_view.png) | ![Calendar](screens/new_habit.png) |
+| ![Home](screens/home.png) | ![Details](screens/habit_view.png) | ![New](screens/new_habit.png) |
 
+| Home Screen | Habit Details | New View |
+|-------------|---------------|---------------|
+| ![Home](screens/dark_home.png) | ![Details](screens/dark_det.png) | ![New](screens/dark_new.png) |
 ## 🤝 Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or improvements, feel free to create an issue or submit a pull request.
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🎉 Acknowledgments
 
