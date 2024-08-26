@@ -1,0 +1,1 @@
+ /Users/mhdshibil/career/habit_on_assig/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart /Users/mhdshibil/career/habit_on_assig/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart:  /Users/mhdshibil/career/habit_on_assig/l10n.yaml /Users/mhdshibil/career/habit_on_assig/lib/src/localization/app_en.arb

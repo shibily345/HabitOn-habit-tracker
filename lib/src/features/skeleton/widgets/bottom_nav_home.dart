@@ -1,0 +1,165 @@
+import 'package:flutter/material.dart';
+import 'package:habit_on_assig/config/default/widgets/containers.dart';
+import 'package:habit_on_assig/src/features/auth/presentation/pages/settings.dart';
+import 'package:habit_on_assig/src/features/habits/presentation/pages/habits/new_habit.dart';
+import 'package:habit_on_assig/src/features/habits/presentation/pages/home/home_page.dart';
+import 'package:habit_on_assig/src/features/skeleton/model/nav_item_model.dart';
+import 'package:rive/rive.dart' as rive;
+
+class SkeletonNav extends StatefulWidget {
+  const SkeletonNav({super.key});
+
+  @override
+  _SkeletonNavState createState() => _SkeletonNavState();
+}
+
+class _SkeletonNavState extends State<SkeletonNav> {
+  // int _selectedIndex = 0;
+  final PageController _pageController = PageController();
+
+  List<rive.SMIBool> riveIconInputs = [];
+  List<rive.StateMachineController?> controllers = [];
+  int selctedNavIndex = 0;
+
+  void animateTheIcon(int index) {
+    riveIconInputs[index].change(true);
+    Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        riveIconInputs[index].change(false);
+      },
+    );
+  }
+
+  void riveOnInIt(rive.Artboard artboard,
+      {required String stateMachineName}) async {
+    rive.StateMachineController? controller =
+        rive.StateMachineController.fromArtboard(artboard, stateMachineName);
+
+    artboard.addController(controller!);
+    controllers.add(controller);
+
+    riveIconInputs.add(controller.findInput<bool>('active') as rive.SMIBool);
+  }
+
+  @override
+  void dispose() {
+    for (var controller in controllers) {
+      controller?.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var th = Theme.of(context);
+    bool isLight = th.brightness == Brightness.light;
+    return Scaffold(
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              // _selectedIndex = index;
+              selctedNavIndex = index;
+            });
+          },
+          children: const [
+            HomePage(),
+            NewHabitPage(),
+            SettingsPage(),
+          ],
+        ),
+        bottomSheet: Padding(
+          padding: const EdgeInsets.only(bottom: 40.0),
+          child: CustomContainer(
+            gradient: LinearGradient(
+              colors: isLight
+                  ? [
+                      const Color.fromARGB(255, 217, 234, 248),
+                      const Color.fromARGB(255, 242, 214, 246)
+                    ]
+                  : [
+                      const Color.fromARGB(255, 143, 175, 203),
+                      const Color.fromARGB(255, 187, 144, 194)
+                    ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            height: 70,
+            width: MediaQuery.of(context).size.width * 0.9,
+            // height: 56, //TODO: In Future remove the height
+            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            // decoration: BoxDecoration(
+            color: th.primaryColorLight,
+            borderRadius: const BorderRadius.all(Radius.circular(24)),
+            boxShadow: BoxShadow(
+              color: th.shadowColor.withOpacity(0.3),
+              offset: const Offset(0, 20),
+              blurRadius: 20,
+            ),
+            // ],
+            // ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(bottomNavItemsLight.length, (index) {
+                final riveIcon = bottomNavItemsLight[index];
+                return GestureDetector(
+                  onTap: () {
+                    _pageController.jumpToPage(index);
+                    animateTheIcon(index);
+                    setState(() {
+                      selctedNavIndex = index;
+                    });
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedBar(isActive: selctedNavIndex == index),
+                      SizedBox(
+                        height: 36,
+                        width: 36,
+                        child: Opacity(
+                          opacity: selctedNavIndex == index ? 1 : 0.5,
+                          child: rive.RiveAnimation.asset(
+                            artboard: riveIcon.artboard,
+                            riveIcon.src,
+                            onInit: (artboard) {
+                              riveOnInIt(artboard,
+                                  stateMachineName: riveIcon.stateMachineName);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ),
+        ));
+  }
+}
+
+class AnimatedBar extends StatelessWidget {
+  const AnimatedBar({
+    super.key,
+    required this.isActive,
+  });
+
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      margin: const EdgeInsets.only(bottom: 2),
+      height: 4,
+      width: isActive ? 20 : 0,
+      decoration: const BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    );
+  }
+}

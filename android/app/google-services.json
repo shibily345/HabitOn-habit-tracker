@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "389689484411",
+    "project_id": "habit-assig",
+    "storage_bucket": "habit-assig.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389689484411:android:558bc4977f57671e53eede",
+        "android_client_info": {
+          "package_name": "com.example.habit_on_assig"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL-K_HhqIZNYP_IgigjR-tt6x55HAvS_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

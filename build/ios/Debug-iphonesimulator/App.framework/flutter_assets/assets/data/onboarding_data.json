@@ -1,0 +1,30 @@
+
+{
+    "onboarding": [
+      {
+        "title": "Welcome to Habit On!",
+        "paragraph": "Start building better habits today. Whether you want to exercise more, eat healthier, or simply become more organized, we’re here to help you achieve your goals, one habit at a time.",
+        "image": "assets/images/1.png"
+      },
+      {
+        "title": "Track Your Progress",
+        "paragraph": "Easily monitor your daily habits and see your progress over time. Visualize your growth and stay motivated by tracking every step you take towards becoming the best version of yourself.",
+        "image": "assets/images/2.png"
+      },
+      {
+        "title": "Set Personal Goals",
+        "paragraph": "Customize your habit journey. Set daily, weekly, or monthly goals that suit your lifestyle. We’ll remind you to stay on track and celebrate your successes with you.",
+        "image": "assets/images/3.png"
+      },
+      {
+        "title": "Stay Consistent",
+        "paragraph": "Consistency is key. Our app helps you build streaks, providing that extra push to keep your habits alive. Break old habits and build new ones with our support.",
+        "image": "assets/images/4.png"
+      },
+      {
+        "title": "Ready to Start?",
+        "paragraph": "Let’s begin your transformation. With Habit Tracker, creating and maintaining healthy habits has never been easier. Your journey to a better you starts now!",
+        "image": "assets/images/5.png"
+      }
+    ]
+  }
