@@ -8,7 +8,6 @@ import 'package:habit_on_assig/src/features/habits/presentation/pages/habits/new
 import 'package:habit_on_assig/src/features/habits/presentation/pages/habits/update_habit.dart';
 import 'package:habit_on_assig/src/features/habits/presentation/pages/home/home_page.dart';
 import 'package:habit_on_assig/src/features/habits/presentation/pages/model/habits_model.dart';
-import 'package:habit_on_assig/src/features/skeleton/skeleton.dart';
 import 'package:habit_on_assig/src/features/skeleton/splash_page.dart';
 import 'package:habit_on_assig/src/features/skeleton/widgets/bottom_nav_home.dart';
 
@@ -42,7 +41,7 @@ class AppRoutes {
         ));
 
       default:
-        return _materialRoute(const Skeleton());
+        return _materialRoute(const SplashScreen());
     }
   }
 

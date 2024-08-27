@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:habit_on_assig/config/default/widgets/containers.dart';
 import 'package:habit_on_assig/config/default/widgets/text.dart';
 import 'package:habit_on_assig/src/features/auth/presentation/providers/user_provider.dart';
@@ -17,6 +18,7 @@ class HabitView extends StatelessWidget {
     final userId = Provider.of<UserProvider>(context).user!.uid;
     var size = MediaQuery.of(context).size;
     var th = Theme.of(context);
+    var ln = AppLocalizations.of(context)!;
 
     return Consumer<HabitProvider>(
       builder: (context, habit, state) {
@@ -93,8 +95,8 @@ class HabitView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const TextDef(
-                              "Streak",
+                            TextDef(
+                              ln.streak,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
@@ -104,8 +106,8 @@ class HabitView extends StatelessWidget {
                               fontWeight: FontWeight.w800,
                             ),
                             const SpaceY(20),
-                            const TextDef(
-                              "Your current straek",
+                            TextDef(
+                              ln.currentStreak,
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             ),
@@ -135,19 +137,20 @@ class HabitView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const TextDef(
-                                  "Habit\nFinished",
+                                TextDef(
+                                  ln.habitFinished,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                                 TextDef(
-                                  "${habitEntity.doneDates.length} Times",
+                                  ln.times(
+                                      habitEntity.doneDates.length.toString()),
                                   fontSize: 29,
                                   fontWeight: FontWeight.w800,
                                 ),
                                 const SpaceY(20),
                                 TextDef(
-                                  "Today: $count",
+                                  ln.today(count.toString()),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -163,19 +166,21 @@ class HabitView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const TextDef(
-                                  "Completion\nRate",
+                                TextDef(
+                                  ln.completionRate,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                                 TextDef(
-                                  "$roundedValue %",
+                                  ln.percentage(roundedValue.toString()),
                                   fontSize: 29,
                                   fontWeight: FontWeight.w800,
                                 ),
                                 const SpaceY(20),
                                 TextDef(
-                                  "${habitEntity.doneDates.length}/$needToDone  Habit",
+                                  ln.habitProgress(
+                                      habitEntity.doneDates.length.toString(),
+                                      needToDone.toString()),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -228,8 +233,9 @@ class HabitView extends StatelessWidget {
                           children: [
                             TextDef(
                               isDoneAll
-                                  ? "Successfully Completed Today"
-                                  : "Done ${count + 1}/${habitEntity.repeatPerDay}",
+                                  ? ln.successToday
+                                  : ln.doneToday("${count + 1}",
+                                      habitEntity.repeatPerDay.toString()),
                               fontSize: 20,
                             ),
                           ],
@@ -237,6 +243,58 @@ class HabitView extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 18.0,
+                  ),
+                  child: SizedBox(
+                      height: 30,
+                      child: TextDef(
+                        ln.reminders,
+                        fontSize: 20,
+                      )),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: habitEntity.reminders.isEmpty
+                    ? Text(ln.noTimesSelected)
+                    : Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20.0, top: 10, bottom: 10),
+                        child: Wrap(
+                          spacing: 15,
+                          children: habitEntity.reminders.map((time) {
+                            return CustomContainer(
+                              width: 110,
+                              height: 30,
+                              borderRadius: BorderRadius.circular(5),
+                              child: Center(
+                                child: TextDef(
+                                  time.substring(
+                                      time.indexOf('(') + 1, time.indexOf(')')),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    top: 20,
+                  ),
+                  child: SizedBox(
+                      height: 30,
+                      child: TextDef(
+                        ln.calendar,
+                        fontSize: 20,
+                      )),
                 ),
               ),
               SliverToBoxAdapter(

@@ -18,16 +18,17 @@ List<RiveModel> bottomNavItemsDark = [
   //     stateMachineName: "SEARCH_Interactivity"),
   RiveModel(
       src: "assets/data/white_icon.riv",
-      artboard: "TIMER",
-      stateMachineName: "TIMER_Interactivity"),
+      artboard: "LIKE/STAR",
+      stateMachineName: "STAR_Interactivity"),
+
+  RiveModel(
+      src: "assets/data/white_icon.riv",
+      artboard: "BELL",
+      stateMachineName: "BELL_Interactivity"),
   RiveModel(
       src: "assets/data/white_icon.riv",
       artboard: "SETTINGS",
       stateMachineName: "SETTINGS_Interactivity"),
-  // RiveModel(
-  //     src: "assets/data/black_icons.riv",
-  //     artboard: "USER",
-  //     stateMachineName: "USER_Interactivity"),
 ];
 
 List<RiveModel> bottomNavItemsLight = [
@@ -41,14 +42,14 @@ List<RiveModel> bottomNavItemsLight = [
   //     stateMachineName: "SEARCH_Interactivity"),
   RiveModel(
       src: "assets/data/black_icons.riv",
+      artboard: "USER",
+      stateMachineName: "USER_Interactivity"),
+  RiveModel(
+      src: "assets/data/black_icons.riv",
       artboard: "TIMER",
       stateMachineName: "TIMER_Interactivity"),
   RiveModel(
       src: "assets/data/black_icons.riv",
       artboard: "SETTINGS",
       stateMachineName: "SETTINGS_Interactivity"),
-  // RiveModel(
-  //     src: "assets/data/black_icons.riv",
-  //     artboard: "USER",
-  //     stateMachineName: "USER_Interactivity"),
 ];

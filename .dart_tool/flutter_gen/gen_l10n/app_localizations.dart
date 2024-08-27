@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_hi.dart';
 
 // ignore_for_file: type=lint
 
@@ -90,14 +91,201 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en')
+    Locale('en'),
+    Locale('hi')
   ];
+
+  /// The current Language
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get language;
 
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'habit_on_assig'**
+  /// **'HabitOn'**
   String get appTitle;
+
+  /// The greeting to the application
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome!'**
+  String get welcome;
+
+  /// default line
+  ///
+  /// In en, this message translates to:
+  /// **'Create Habits That Stick, See Results That Shine.'**
+  String get tagLine;
+
+  /// filter not completed
+  ///
+  /// In en, this message translates to:
+  /// **'Not Completed'**
+  String get notCompleted;
+
+  /// default line
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// default line
+  ///
+  /// In en, this message translates to:
+  /// **'Not Today'**
+  String get notToday;
+
+  /// default line
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// Label for the current streak
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get streak;
+
+  /// Description for the user's current streak
+  ///
+  /// In en, this message translates to:
+  /// **'Your current streak'**
+  String get currentStreak;
+
+  /// Label for the completed habit count
+  ///
+  /// In en, this message translates to:
+  /// **'Habit\nFinished'**
+  String get habitFinished;
+
+  /// Label for the habit completion rate
+  ///
+  /// In en, this message translates to:
+  /// **'Completion\nRate'**
+  String get completionRate;
+
+  /// Finished Times
+  ///
+  /// In en, this message translates to:
+  /// **'{value} Times'**
+  String times(String value);
+
+  /// Number of actions completed today
+  ///
+  /// In en, this message translates to:
+  /// **'Today: {count}'**
+  String today(String count);
+
+  /// Percentage value
+  ///
+  /// In en, this message translates to:
+  /// **'{roundedValue} %'**
+  String percentage(String roundedValue);
+
+  /// Habit progress showing completed habits out of total required
+  ///
+  /// In en, this message translates to:
+  /// **'{doneDates}/{needToDone} Habit'**
+  String habitProgress(String doneDates, String needToDone);
+
+  /// Message indicating successful completion for today
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully Completed Today'**
+  String get successToday;
+
+  /// Shows how many times the habit is done today out of required repetitions
+  ///
+  /// In en, this message translates to:
+  /// **'Done {count}/{repeatPerDay}'**
+  String doneToday(String count, String repeatPerDay);
+
+  /// Label for reminders section
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get reminders;
+
+  /// Message indicating no times were selected
+  ///
+  /// In en, this message translates to:
+  /// **'No times selected'**
+  String get noTimesSelected;
+
+  /// Label for the calendar
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar'**
+  String get calendar;
+
+  /// Title for the habit statistics section
+  ///
+  /// In en, this message translates to:
+  /// **'Your Habit Statistics'**
+  String get yourHabitStatistics;
+
+  /// Completion stats for a specific day
+  ///
+  /// In en, this message translates to:
+  /// **'{completionStats}   Completed   '**
+  String completionStats(String completionStats);
+
+  /// Call to action to start a new habit
+  ///
+  /// In en, this message translates to:
+  /// **'Start a new habit!'**
+  String get startNewHabit;
+
+  /// Label for language selection
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languagen;
+
+  /// Button or link to log out
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// Label for the settings section
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Prompt to select a language
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get selectLanguage;
+
+  /// Confirmation prompt for logging out
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Logout'**
+  String get confirmLogout;
+
+  /// Confirmation button label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// Label for theme selection
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// Title for the theme selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Select Theme'**
+  String get selectTheme;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -109,7 +297,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -121,6 +309,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
+    case 'hi': return AppLocalizationsHi();
   }
 
   throw FlutterError(

@@ -11,6 +11,7 @@ import 'package:habit_on_assig/src/features/habits/presentation/providers/habit_
 import 'package:habit_on_assig/src/features/habits/presentation/providers/update_value.dart';
 import 'package:habit_on_assig/src/features/skeleton/notification_controller.dart';
 import 'package:habit_on_assig/src/features/skeleton/providers/selected_page_provider.dart';
+import 'package:habit_on_assig/src/localization/l10n.dart';
 import 'package:provider/provider.dart';
 
 import 'settings/settings_controller.dart';
@@ -52,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => AuthProvider(),
+              create: (context) => AuthenticationProvider()..loadLocale(),
             ),
             ChangeNotifierProvider(
               create: (context) => UserProvider()..loadUser(),
@@ -71,24 +72,27 @@ class _MyAppState extends State<MyApp> {
               create: (context) => SelectedPageProvider(),
             ),
           ],
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            restorationScopeId: 'app',
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en', ''),
-            ],
-            onGenerateTitle: (BuildContext context) =>
-                AppLocalizations.of(context)!.appTitle,
-            theme: lightTheme(context),
-            darkTheme: darkTheme(context),
-            themeMode: widget.settingsController.themeMode,
-            onGenerateRoute: AppRoutes.onGenerateRoutes,
+          child: Consumer<AuthenticationProvider>(
+            builder: (context, ap, state) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                restorationScopeId: 'app',
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: L10n.all,
+                locale: ap.locale,
+                onGenerateTitle: (BuildContext context) =>
+                    AppLocalizations.of(context)!.appTitle,
+                theme: lightTheme(context),
+                darkTheme: darkTheme(context),
+                themeMode: ap.themeMode,
+                onGenerateRoute: AppRoutes.onGenerateRoutes,
+              );
+            },
           ),
         );
       },

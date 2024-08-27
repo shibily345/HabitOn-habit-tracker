@@ -11,15 +11,16 @@ import 'package:habit_on_assig/src/features/auth/data/models/auth_model.dart';
 import 'package:habit_on_assig/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthProvider extends ChangeNotifier {
+class AuthenticationProvider extends ChangeNotifier {
   UserModel? auth;
   Failure? failure;
-
-  AuthProvider({
+  AuthenticationProvider({
     this.auth,
     this.failure,
   });
+  Locale _locale = const Locale('en');
 
+  Locale get locale => _locale;
   Future<Either<Failure, UserModel>> eitherFailureOrAuth() async {
     AuthRepositoryImpl repository = AuthRepositoryImpl(
       remoteDataSource: AuthRemoteDataSourceImpl(),
@@ -74,5 +75,28 @@ class AuthProvider extends ChangeNotifier {
       },
     );
     return failureOrAuth;
+  }
+
+  Future<void> loadLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final languageCode = prefs.getString('language_code') ?? 'en';
+    _locale = Locale(languageCode);
+    notifyListeners();
+  }
+
+  Future<void> setLocale(Locale locale) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', locale.languageCode);
+    _locale = locale;
+    notifyListeners();
+  }
+
+  ThemeMode _themeMode = ThemeMode.system;
+
+  ThemeMode? get themeMode => _themeMode;
+
+  void toggleTheme(ThemeMode theme) {
+    _themeMode = theme;
+    notifyListeners();
   }
 }

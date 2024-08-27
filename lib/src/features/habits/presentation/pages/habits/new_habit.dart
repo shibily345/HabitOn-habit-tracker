@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:habit_on_assig/config/default/widgets/containers.dart';
 import 'package:habit_on_assig/config/default/widgets/text.dart';
 import 'package:habit_on_assig/src/features/habits/presentation/pages/model/habits_model.dart';
@@ -23,6 +24,8 @@ class _NewHabitPageState extends State<NewHabitPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var th = Theme.of(context);
+    var ln = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -42,8 +45,8 @@ class _NewHabitPageState extends State<NewHabitPage> {
                       children: [
                         SizedBox(
                           height: size.height * 0.13,
-                          child: const TextDef(
-                            "Start a new habit!",
+                          child: TextDef(
+                            ln.startNewHabit,
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),

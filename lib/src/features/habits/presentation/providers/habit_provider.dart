@@ -23,7 +23,9 @@ class HabitProvider extends ChangeNotifier {
     this.habit,
     this.failure,
   });
+  List<DateTime>? last7;
   String? get sortValue => sort;
+  List<DateTime>? get last7days => last7;
   // List<HabitEntity>? get habitList => habit;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<Either<Failure, List<HabitEntity>>> eitherFailureOrHabit({
@@ -325,5 +327,63 @@ class HabitProvider extends ChangeNotifier {
       default:
         return habits;
     }
+  }
+
+  Map<String, int> getHabitCompletionStats(List<HabitEntity> habits) {
+    final Map<String, int> completionStats = {};
+    final now = DateTime.now();
+    final lastSevenDays = List.generate(7, (index) {
+      final day = now.subtract(Duration(days: index));
+      return DateTime(day.year, day.month, day.day);
+    });
+    last7 = lastSevenDays;
+    // Initialize the map with the last seven days
+    for (var day in lastSevenDays) {
+      completionStats[day.toIso8601String()] = 0;
+    }
+
+    // Count the number of times habits were completed on each day
+    for (var habit in habits) {
+      for (var date in habit.doneDates) {
+        final doneDate = DateTime(date.year, date.month, date.day);
+        if (completionStats.containsKey(doneDate.toIso8601String())) {
+          completionStats[doneDate.toIso8601String()] =
+              (completionStats[doneDate.toIso8601String()] ?? 0) + 1;
+        }
+      }
+    }
+
+    return completionStats;
+  }
+
+  List<HabitEntity> filterHabitsByWeekdayAndDate(
+      List<HabitEntity> habits, String targetDay, DateTime today) {
+    return habits.where((habit) {
+      final bool isWithinDateRange =
+          today.isAfter(habit.createdAt) && today.isBefore(habit.endDate);
+      final bool isOnTargetDay = habit.days.contains(targetDay);
+      return isWithinDateRange && isOnTargetDay;
+    }).toList();
+  }
+
+  String generateStatsMessage(List<HabitEntity> habits) {
+    StringBuffer message =
+        StringBuffer("Habit Tracking Stats for the Last 7 Days:\n\n");
+
+    for (var habit in habits) {
+      int completedDays = habit.doneDates.where((date) {
+        return date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
+      }).length;
+
+      int missedDays = 7 - completedDays; // Assuming 7 days tracking
+
+      message.writeln("- Habit: ${habit.name}");
+      message.writeln("  - Total Completed: $completedDays days");
+      message.writeln("  - Missed: $missedDays days\n");
+    }
+
+    message.writeln("Keep up the great work!");
+
+    return message.toString();
   }
 }

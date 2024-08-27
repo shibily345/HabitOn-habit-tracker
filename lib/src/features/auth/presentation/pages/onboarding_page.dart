@@ -178,7 +178,7 @@ class _BuildBodyState extends State<BuildBody> {
                     ],
                   ),
                   onTap: () {
-                    Provider.of<AuthProvider>(context, listen: false)
+                    Provider.of<AuthenticationProvider>(context, listen: false)
                         .eitherFailureOrAuth()
                         .then((result) {
                       if (result.isRight()) {
@@ -196,7 +196,8 @@ class _BuildBodyState extends State<BuildBody> {
                 ButtonDef(
                   onTap: () {
                     if (Platform.isIOS) {
-                      Provider.of<AuthProvider>(context, listen: false)
+                      Provider.of<AuthenticationProvider>(context,
+                              listen: false)
                           .eitherFailureOrAuthWithApple()
                           .then((result) {
                         if (result.isRight()) {

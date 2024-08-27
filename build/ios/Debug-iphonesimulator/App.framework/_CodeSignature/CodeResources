@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		YZGE3fJ87l/mEMc6yLtagYJEQo8=
+		zM9aoBhcqXlp6yj+OQXbj1jy8Lg=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		6vE4jBU372p9p6s0doEYCH6a5rE=
+		H0aCnbN/KKwNbw7UMNnTCcQaoB8=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		5FoxV0zXUtMcdjyv3uFe+gY29+I=
+		QMM6uabcCrAeoULFrB0uWTxIPCc=
 		</data>
 		<key>flutter_assets/assets/data/black_icons.riv</key>
 		<data>
@@ -67,6 +67,10 @@
 		<key>flutter_assets/assets/fonts/Roboto-Regular.ttf</key>
 		<data>
 		hNECSIc4sOu8elCHlz7/vVTJW9U=
+		</data>
+		<key>flutter_assets/assets/images/.DS_Store</key>
+		<data>
+		0TQqHHrQNhm4ccDE0eOxGuwyTEs=
 		</data>
 		<key>flutter_assets/assets/images/1.png</key>
 		<data>
@@ -138,7 +142,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		e31TchSTs6TXWDLbG1uXrM7i/pY=
+		bFwncXM183oiQz8Cv7fZOV5ykwo=
 		</data>
 		<key>flutter_assets/packages/awesome_notifications/test/assets/images/test_image.png</key>
 		<data>
@@ -159,14 +163,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1rWxylSeHhrOxs93lLU7ReEx8fpiF0k6jt+A6sDUf54=
+			V7E6eXV5L8IHF5Qh9ARLcQxZRnYB/I4TEgbJSdppe84=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dyVkOwKlmufG4bmLvXsB3BB9cvHNmv3fNTq1KFAFJRA=
+			i+T6w42N93o3e4o11iPppJqDdwewQ47oIMpIZk3+udw=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -180,7 +184,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MfFP7U4gInf5J5+cAXSFmgRxhDWAQvql6ovgOynJXwE=
+			2CO/9fWRrmvfvHNcbfd4PJDMpKmVVGY0h3O+v1R9htE=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/data/black_icons.riv</key>
@@ -383,7 +387,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			b2QPf643F/YTzTLerH2gDRWNVBpVas5j/RcstHpZpUc=
+			9KrUpY6ManwA5GDDqFDV1hPWzioZn7GYqCBj8RL6iTg=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/awesome_notifications/test/assets/images/test_image.png</key>

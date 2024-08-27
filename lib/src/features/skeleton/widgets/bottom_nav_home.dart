@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habit_on_assig/config/default/widgets/containers.dart';
 import 'package:habit_on_assig/src/features/auth/presentation/pages/settings.dart';
 import 'package:habit_on_assig/src/features/habits/presentation/pages/habits/new_habit.dart';
+import 'package:habit_on_assig/src/features/habits/presentation/pages/habits/statitics.dart';
 import 'package:habit_on_assig/src/features/habits/presentation/pages/home/home_page.dart';
 import 'package:habit_on_assig/src/features/skeleton/model/nav_item_model.dart';
 import 'package:rive/rive.dart' as rive;
@@ -65,6 +66,7 @@ class _SkeletonNavState extends State<SkeletonNav> {
           },
           children: const [
             HomePage(),
+            HabitStatisticsPage(),
             NewHabitPage(),
             SettingsPage(),
           ],
@@ -79,8 +81,8 @@ class _SkeletonNavState extends State<SkeletonNav> {
                       const Color.fromARGB(255, 242, 214, 246)
                     ]
                   : [
-                      const Color.fromARGB(255, 143, 175, 203),
-                      const Color.fromARGB(255, 187, 144, 194)
+                      const Color.fromARGB(255, 38, 60, 81),
+                      const Color.fromARGB(255, 77, 45, 82)
                     ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -102,8 +104,8 @@ class _SkeletonNavState extends State<SkeletonNav> {
             // ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(bottomNavItemsLight.length, (index) {
-                final riveIcon = bottomNavItemsLight[index];
+              children: List.generate(bottomNavItemsDark.length, (index) {
+                final riveIcon = bottomNavItemsDark[index];
                 return GestureDetector(
                   onTap: () {
                     _pageController.jumpToPage(index);
@@ -120,14 +122,21 @@ class _SkeletonNavState extends State<SkeletonNav> {
                         height: 36,
                         width: 36,
                         child: Opacity(
-                          opacity: selctedNavIndex == index ? 1 : 0.5,
-                          child: rive.RiveAnimation.asset(
-                            artboard: riveIcon.artboard,
-                            riveIcon.src,
-                            onInit: (artboard) {
-                              riveOnInIt(artboard,
-                                  stateMachineName: riveIcon.stateMachineName);
-                            },
+                          opacity: selctedNavIndex == index ? 1 : 0.4,
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              th.primaryColor,
+                              BlendMode.modulate,
+                            ),
+                            child: rive.RiveAnimation.asset(
+                              artboard: riveIcon.artboard,
+                              riveIcon.src,
+                              onInit: (artboard) {
+                                riveOnInIt(artboard,
+                                    stateMachineName:
+                                        riveIcon.stateMachineName);
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -156,9 +165,9 @@ class AnimatedBar extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 2),
       height: 4,
       width: isActive ? 20 : 0,
-      decoration: const BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
     );
   }

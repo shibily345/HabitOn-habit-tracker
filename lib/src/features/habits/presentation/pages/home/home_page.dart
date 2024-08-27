@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:habit_on_assig/config/default/widgets/containers.dart';
 import 'package:habit_on_assig/config/default/widgets/text.dart';
 import 'package:habit_on_assig/src/features/auth/presentation/providers/user_provider.dart';
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var th = Theme.of(context);
+    var ln = AppLocalizations.of(context)!;
     final userInfo = Provider.of<UserProvider>(context).user;
     return Scaffold(
         // floatingActionButton: FloatingActionButton(
@@ -64,8 +66,8 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const TextDef(
-                            "Welcome!",
+                          TextDef(
+                            ln.welcome,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -82,8 +84,8 @@ class HomePage extends StatelessWidget {
                           const SpaceY(20),
                           SizedBox(
                             width: size.width * 0.52,
-                            child: const TextDef(
-                              "Create Habits That Stick, See Results That Shine.",
+                            child: TextDef(
+                              ln.tagLine,
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
                               maxLines: 2,
@@ -116,7 +118,7 @@ class HomePage extends StatelessWidget {
                         width: 120,
                         height: 40,
                         borderRadius: BorderRadius.circular(10),
-                        child: const Center(child: TextDef("Not Completed")),
+                        child: Center(child: TextDef(ln.notCompleted)),
                       ),
                       CustomContainer(
                         ontap: () {
@@ -128,7 +130,7 @@ class HomePage extends StatelessWidget {
                         width: 100,
                         height: 40,
                         borderRadius: BorderRadius.circular(10),
-                        child: const Center(child: TextDef("Completed")),
+                        child: Center(child: TextDef(ln.completed)),
                       ),
                       CustomContainer(
                         ontap: () {
@@ -140,7 +142,7 @@ class HomePage extends StatelessWidget {
                         width: 100,
                         height: 40,
                         borderRadius: BorderRadius.circular(10),
-                        child: const Center(child: TextDef("Not Today")),
+                        child: Center(child: TextDef(ln.notToday)),
                       ),
                       CustomContainer(
                         ontap: () {
@@ -152,7 +154,7 @@ class HomePage extends StatelessWidget {
                         width: 60,
                         height: 40,
                         borderRadius: BorderRadius.circular(10),
-                        child: const Center(child: TextDef("All")),
+                        child: Center(child: TextDef(ln.all)),
                       )
                     ],
                   ),
