@@ -1,0 +1,62 @@
+# Flutter & Dart specific files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Android specific files
+**/android/**/gradle-wrapper.jar
+**/android/.gradle/
+**/android/captures/
+**/android/**/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+
+# iOS specific files
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/ServiceDefinitions.json
+ios/Runner.xcworkspace/
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Web specific files
+web/.dart_tool/
+web/.packages
+
+# Editor directories and files
+.idea/
+*.iml
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# macOS specific files
+macos/Flutter/GeneratedPluginRegistrant.*
+macos/Flutter/ephemeral/
+macos/Pods/
+macos/.symlinks/
+
+# Linux specific files
+linux/flutter/ephemeral/
+linux/Flutter/GeneratedPluginRegistrant.*
+
+# Windows specific files
+windows/flutter/ephemeral/
+windows/Flutter/GeneratedPluginRegistrant.*
+
+# Miscellaneous
+*.lock
+*.log
+.published
+.dart_tool/
+.pub/
+build/
