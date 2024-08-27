@@ -2,7 +2,6 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.0-blue.svg?logo=flutter)](https://flutter.dev/)
 [![Firebase](https://img.shields.io/badge/Firebase-Enabled-orange.svg?logo=firebase)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **HabitOn** is your personal assistant for building, tracking, and maintaining positive habits. Crafted with precision using Flutter and Firebase, HabitOn is your go-to app for habit formation, providing a clean, intuitive, and powerful experience.
 
